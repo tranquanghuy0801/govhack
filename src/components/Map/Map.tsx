@@ -3,19 +3,20 @@ import { Suburb } from "./Suburb";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
 import L, { PathOptions } from "leaflet";
+import { e4, getColor } from "./utils";
 
 type MapProps = {
   selectedSuburb: Suburb;
   onSuburbChange: () => any;
 };
-const geoJson = window.location.origin + "/qldGeoJson.json";
+const geoJson = window.location.origin + "/output.json";
 
 const markerIcon = L.icon({
   iconUrl: window.location.origin + "/img/marker.png",
   iconRetinaUrl: window.location.origin + "/img/marker.png",
   iconAnchor: [5, 55],
   popupAnchor: [10, -44],
-  iconSize: [55, 55],
+  iconSize: [40, 40]
 });
 
 export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
@@ -23,36 +24,15 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
     GeoJSON.GeoJsonObject | undefined
   >();
 
-  const getColor = (d: number) => {
-    return d > 1000
-      ? "#800026"
-      : d > 500
-      ? "#BD0026"
-      : d > 200
-      ? "#E31A1C"
-      : d > 100
-      ? "#FC4E2A"
-      : d > 50
-      ? "#FD8D3C"
-      : d > 20
-      ? "#FEB24C"
-      : d > 10
-      ? "#FED976"
-      : "#FFEDA0";
-  };
-
   //style
   const style = (
     feature: GeoJSON.Feature<GeoJSON.GeometryObject> | undefined
   ) => {
-    if (!feature?.properties) return {} as PathOptions;
+    if (!feature?.properties?.se4) return {} as PathOptions;
     return {
-      fillColor: getColor(feature.properties.density),
-      weight: 2,
-      opacity: 1,
-      color: "white",
-      dashArray: "3",
+      fillColor: getColor(feature.properties.se4),
       fillOpacity: 0.7,
+      stroke: false,
     };
   };
 
@@ -67,7 +47,7 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
   }, []);
 
   if (!geoJsonData) {
-    return <div></div>;
+    return <div>Loading map...</div>;
   }
 
   return (
@@ -83,9 +63,18 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker icon={markerIcon} position={[-27.4705, 153.026]}>
-          <Popup></Popup>
-        </Marker>
+        {
+          Object.entries(e4).filter(e => e[1].markerPosition).map((se4Location) => (
+            <Marker
+              icon={markerIcon}
+              position={[se4Location[1].markerPosition!.lat, se4Location[1].markerPosition!.long]}
+            >
+              <Popup>
+                Something nice about {se4Location[0]}
+              </Popup>
+            </Marker>
+          ))
+        }
       </MapContainer>
     </div>
   );
