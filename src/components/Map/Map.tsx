@@ -2,7 +2,7 @@ import React from "react";
 import { Suburb } from "./Suburb";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
-import L, { PathOptions, StyleFunction } from "leaflet";
+import L, { PathOptions } from "leaflet";
 
 type MapProps = {
   selectedSuburb: Suburb;

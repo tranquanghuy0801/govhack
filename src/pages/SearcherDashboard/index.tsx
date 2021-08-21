@@ -1,7 +1,9 @@
+import { Map } from '../../components/Map/Map'
+
 const SearcherDashboard = () => {
   return (
     <>
-      searcher
+      <Map onSuburbChange={() => {}} selectedSuburb="AcaciaRidge" />
     </>
   )
 }
