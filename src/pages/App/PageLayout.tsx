@@ -25,11 +25,13 @@ export default PageLayout
 
 const useStyles = makeStyles({
   root: {
+    position: 'relative',
     background: '#f3f6f6',
     width: '100%',
     height: '100%',
   },
   content: {
+    position: 'relative',
     width: '100%',
     height: 'calc(100% - 64px)',
   }

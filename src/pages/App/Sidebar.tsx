@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { makeStyles, Paper, Tabs } from '@material-ui/core'
 import { SignalCellularAlt, Person, LocalAtm } from '@material-ui/icons'
 
-import Tab from 'components/Tab'
+import Tab from './StyledTab'
 import logo from 'assets/logo.png'
 
 const Sidebar = () => {
