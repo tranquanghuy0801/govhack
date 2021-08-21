@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, ThemeProvider, createTheme } from '@material-ui/core'
+import { SnackbarProvider } from 'notistack'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-function App() {
+const Root = lazy(() => import('pages/index'))
+const SearcherDashboard = lazy(() => import('pages/SearcherDashboard'))
+
+const theme = createTheme()
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <SnackbarProvider>
+        <BrowserRouter>
+          <Suspense fallback='loading...'>
+            <Routes>
+              <Route path='/' element={<Root />}>
+                <Route path='searcher' element={<SearcherDashboard />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </SnackbarProvider>
+    </ThemeProvider>
+  )
 }
-
-export default App;
+export default App
