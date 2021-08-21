@@ -19,6 +19,7 @@ const App = () => {
             <Routes>
               <Route path='/' element={<Root />}>
                 <Route path='searcher' element={<SearcherDashboard />} />
+                <Route path='map' element={<Map selectedSuburb="AcaciaRidge" onSuburbChange={() => {}} />} />
               </Route>
             </Routes>
           </Suspense>
