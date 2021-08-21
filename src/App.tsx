@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@material-ui/core'
 import { SnackbarProvider } from 'notistack'
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Map } from "./component/Map/Map";
 
 const Root = lazy(() => import('pages/index'))
 const SearcherDashboard = lazy(() => import('pages/SearcherDashboard'))
