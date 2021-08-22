@@ -13,7 +13,7 @@ const Slider: React.FC<SliderProps> = ({ label, ...props }) => {
       <Typography gutterBottom>
         {label}
       </Typography>
-      <MuiSlider {...(props as any)} style={{ marginBottom: 12 }} />
+      <MuiSlider {...(props as any)} style={{ marginBottom: 8 }} />
     </>
   )
 }
