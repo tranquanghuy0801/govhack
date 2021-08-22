@@ -22,19 +22,22 @@ type FormFieldProps = {
     div: string;
     input: string;
   };
-  showCarrers: boolean;
   selectedCarrer: string;
 };
 
-const FormField: React.FC<FormFieldProps> = ({
-  fieldName,
-  className,
-  showCarrers,
-}) => {
-  const [fieldValue, setFieldValue] = React.useState<string[]>([]);
+const FormField: React.FC<FormFieldProps> = ({ fieldName, className }) => {
+  const [fieldValue, setFieldValue] = React.useState<string | undefined>();
+  const [sliderValue, setSliderValue] = React.useState<number>(0);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setFieldValue(event.target.value as string[]);
+  const handleSelectionChange = (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => {
+    const value = String(event.target.value);
+    setFieldValue(value);
+  };
+
+  const handleSliderValueChange = (value: number) => {
+    setSliderValue(value);
   };
 
   return (
@@ -46,11 +49,19 @@ const FormField: React.FC<FormFieldProps> = ({
           </Typography>
         </Grid>
         <Grid item md={6}>
-          <SkillSlider />
-          <DropDown handleChange={handleChange} value={fieldValue} />
+          <SkillSlider
+            defaultValue={0}
+            sliderValue={sliderValue}
+            onSliderValueChange={handleSliderValueChange}
+          />
+          {!!sliderValue ? (
+            <DropDown handleChange={handleSelectionChange} value={fieldValue} />
+          ) : null}
         </Grid>
         <Grid item md={3}>
-          <input className={className.input} value={fieldValue} disabled />
+          {fieldValue ? (
+            <input className={className.input} value={fieldValue} disabled />
+          ) : null}
         </Grid>
       </Grid>
     </div>
@@ -77,15 +88,16 @@ const Form: React.FC<any> = () => {
   return (
     <div className={classes.root}>
       <Paper elevation={12} className={classes.formContainer}>
+        <Typography variant="h2"> Rate your skills</Typography>
         <form noValidate autoComplete="off">
           {profileFields.map((fieldName) => (
             <FormField
+              key={fieldName}
               fieldName={fieldName}
               className={{
                 div: classes.formField,
                 input: classes.formFieldInput,
               }}
-              showCarrers
               selectedCarrer=""
             />
           ))}

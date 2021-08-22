@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import Slider from "@material-ui/core/Slider";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,15 +26,26 @@ function valuetext(value: number) {
   return `${value}`;
 }
 
-type SliderProps = {};
+type SliderProps = {
+  defaultValue: number;
+  sliderValue: number;
+  onSliderValueChange: any;
+};
 
-const SkillSlider: React.FC<SliderProps> = () => {
+const SkillSlider: React.FC<SliderProps> = ({
+  defaultValue,
+  sliderValue,
+  onSliderValueChange,
+}) => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Slider
-        defaultValue={0}
+        onChange={(e, value) => {
+          onSliderValueChange(value);
+        }}
+        value={sliderValue}
+        defaultValue={defaultValue}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-always"
         step={10}

@@ -64,9 +64,6 @@ const Dropdown: React.FC<any> = ({ handleChange, value }) => {
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem disabled value="">
-            <em>Placeholder</em>
-          </MenuItem>
           {names.map((name) => (
             <MenuItem key={name} value={name}>
               {name}
