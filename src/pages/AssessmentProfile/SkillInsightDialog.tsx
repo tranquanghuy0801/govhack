@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
-const data = skills.slice(skills.length - random(3, 5)).map(skill => ({
-  name: skill, value: random(20, 200)
-}))
 
 export const SkillInsightDialog = ({ open, handleClose }: any) => {
   const navigate = useNavigate()
   const handleClick = () => navigate('/search')
+
+  if(!open) return null
+
+  const data = skills.slice(skills.length - random(2, 5)).map(skill => ({
+    name: skill, value: random(20, 200)
+  }))
 
   return (
     <Dialog open={open} onClose={handleClose}>

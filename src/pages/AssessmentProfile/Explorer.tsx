@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: "10px",
     backgroundColor: "#f2f2f2",
     padding: "0 1em",
+    cursor: 'pointer'
   },
 }));
 
@@ -56,11 +57,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   );
 };
 
-const Explorer = () => {
+const Explorer = ({ openDialog }: any) => {
   const classes = useStyles();
-  const handleSuggestionClick = () => {
-    //add dialog opener
-  };
+  const handleSuggestionClick = () => openDialog()
+
   return (
     <Grid container justifyContent="space-around" className={classes.root}>
       <Grid item md={7}>
