@@ -10,6 +10,8 @@ const Sidebar = () => {
   const classes = useStyles()
 
   const { pathname } = useLocation()
+  const [_, path] = pathname.split('/')
+  console.log(path)
 
   const navigate = useNavigate()
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => navigate(newValue)
@@ -19,7 +21,7 @@ const Sidebar = () => {
       <Tabs
         orientation='vertical'
         variant='scrollable'
-        value={pathname}
+        value={path}
         onChange={handleChange}
         TabIndicatorProps={{
           style: { display: 'none' }
@@ -32,11 +34,11 @@ const Sidebar = () => {
         />
 
         <Tab
-          value='/user-profile'
+          value='user-profile'
           icon={<Person fontSize='large' />}
         />
         <Tab
-          value='/search'
+          value='search'
           icon={<SignalCellularAlt fontSize='large' />}
         />
 

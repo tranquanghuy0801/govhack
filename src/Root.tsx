@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from 'pages/App'
 
 import UserProfile from 'pages/UserProfile'
+import SkillAssessment from 'pages/SkillAssessment'
 import AssessmentProfile from 'pages/AssessmentProfile'
 
 import Search from 'pages/Search'
@@ -27,8 +28,8 @@ const Root = () => {
             <Routes>
               <Route path='/' element={<App />}>
                 <Route path='/user-profile' element={<UserProfile />}>
-                  <Route element={<AssessmentProfile />} />
-                  {/* /explore */}
+                  <Route element={<SkillAssessment />} />
+                  <Route path='explore' element={<AssessmentProfile />} />
                 </Route>
                 <Route path='/search' element={<Search />} />
               </Route>
