@@ -37,7 +37,7 @@ export const FormField: React.FC<FormFieldProps> = ({ fieldName, className }) =>
         </Grid>
         <Grid item xs={6}>
           <SkillSlider
-            label='asd'
+            label={'' as any}
             defaultValue={0}
             value={sliderValue as any}
             onChange={handleSliderValueChange as any}
