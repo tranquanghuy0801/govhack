@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,18 +25,13 @@ function valuetext(value: number) {
   return `${value}`;
 }
 
-type SliderProps = {
-  sliderLable: string;
-};
+type SliderProps = {};
 
-const SkillSlider: React.FC<SliderProps> = ({ sliderLable }) => {
+const SkillSlider: React.FC<SliderProps> = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider-always" gutterBottom>
-        {sliderLable}
-      </Typography>
       <Slider
         defaultValue={0}
         getAriaValueText={valuetext}

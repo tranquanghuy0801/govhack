@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, makeStyles, Paper, Button } from "@material-ui/core";
+import { Grid, makeStyles, Paper, Button, Typography } from "@material-ui/core";
 import SkillSlider from "../Slider";
 import DropDown from "../Dropdown";
 
@@ -40,11 +40,16 @@ const FormField: React.FC<FormFieldProps> = ({
   return (
     <div className={className.div}>
       <Grid container>
-        <Grid item md={8}>
-          <SkillSlider sliderLable={fieldName} />
+        <Grid item md={3}>
+          <Typography id="discrete-slider-always" gutterBottom>
+            {fieldName}
+          </Typography>
+        </Grid>
+        <Grid item md={6}>
+          <SkillSlider />
           <DropDown handleChange={handleChange} value={fieldValue} />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={3}>
           <input className={className.input} value={fieldValue} disabled />
         </Grid>
       </Grid>
