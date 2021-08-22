@@ -74,8 +74,6 @@ const names = [
 ];
 
 const Dropdown: React.FC<any> = ({ handleChange, value }) => {
-  const classes = useStyles();
-
   return (
     <div>
       <TextField select style={{ width: 150, marginTop: 12, marginLeft: 12 }}>
