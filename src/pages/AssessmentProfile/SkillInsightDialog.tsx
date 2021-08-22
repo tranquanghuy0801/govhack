@@ -5,7 +5,7 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
-export const SkillInsightDialog = ({ open, handleClose }: any) => {
+export const SkillInsightDialog = ({ title, open, handleClose }: any) => {
   const navigate = useNavigate()
   const handleClick = () => navigate('/search')
 
@@ -19,7 +19,7 @@ export const SkillInsightDialog = ({ open, handleClose }: any) => {
     <Dialog open={open} onClose={handleClose}>
       <DialogContent>
         <Typography variant='h5' style={{ fontWeight: 600 }}>
-          Description
+          {title}
         </Typography>
         <Typography variant='body1'>
           Designs, develops, modifies, documents, tests, implements, installs, supports, software applications and systems

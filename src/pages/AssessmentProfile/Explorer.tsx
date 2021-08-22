@@ -25,8 +25,18 @@ const useStyles = makeStyles(() => ({
     borderRadius: "10px",
     backgroundColor: "#f2f2f2",
     padding: "0 1em",
+    position: 'relative',
     cursor: 'pointer'
   },
+  progress: {
+    background: '#c6dcf6',
+    position: 'absolute',
+    zIndex: 1,
+    width: 50,
+    left: 0,
+    height: '100%',
+    opacity: '0.5'
+  }
 }));
 
 const recommendations = [
@@ -49,8 +59,11 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   handleOnClick,
 }) => {
   const classes = useStyles();
+  const [number] = value.split('%')
+
   return (
     <div className={classes.progressBar} onClick={handleOnClick}>
+      <div className={classes.progress} style={{ width: `calc(100% * ${number} / 100)` }} />
       <h4>{label}</h4>
       <h4>{value}</h4>
     </div>
@@ -59,7 +72,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
 const Explorer = ({ openDialog }: any) => {
   const classes = useStyles();
-  const handleSuggestionClick = () => openDialog()
 
   return (
     <Grid container justifyContent="space-around" className={classes.root}>
@@ -84,7 +96,7 @@ const Explorer = ({ openDialog }: any) => {
                     key={label}
                     label={label}
                     value={value}
-                    handleOnClick={handleSuggestionClick}
+                    handleOnClick={() => openDialog(label)}
                   />
                   <br />
                 </>

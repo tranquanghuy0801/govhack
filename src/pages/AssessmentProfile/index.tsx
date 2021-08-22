@@ -4,13 +4,18 @@ import { SkillInsightDialog } from "./SkillInsightDialog";
 
 const AssessmentProfile = () => {
   const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
+  const [title, setTitle] = useState('Description')
+
+  const handleOpen = (label) => {
+    setTitle(label)
+    setOpen(true)
+  }
   const handleClose = () => setOpen(false)
 
   return (
     <>
       <Explorer openDialog={handleOpen} />
-      <SkillInsightDialog open={open} handleClose={handleClose} />
+      <SkillInsightDialog title={title} open={open} handleClose={handleClose} />
     </>
   );
 };
