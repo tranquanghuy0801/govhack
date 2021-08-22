@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Paper, Button, Typography } from "@material-ui/core";
 import SkillCluster from "../../assets/skill_cluster.png";
+import React from "react";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -7,15 +8,23 @@ const useStyles = makeStyles(() => ({
   },
   img: {
     width: "100%",
-    "& img": {
-      height: "300px",
-    },
+    height: "550px",
+    objectFit: "cover",
   },
-  exploreContainer: {
-    maxHeight: "30em",
-  },
+  exploreContainer: {},
   header: {
     padding: "1em 0 0 1em",
+  },
+  recommendations: {
+    padding: "1em",
+    height: "100%",
+  },
+  progressBar: {
+    display: "flex",
+    justifyContent: "space-between",
+    borderRadius: "10px",
+    backgroundColor: "#f2f2f2",
+    padding: "0 1em",
   },
 }));
 
@@ -27,8 +36,31 @@ const recommendations = [
   { label: "Software Manager", value: "10%" },
 ];
 
+type ProgressBarProps = {
+  label: string;
+  value: string;
+  handleOnClick: () => void;
+};
+
+const ProgressBar: React.FC<ProgressBarProps> = ({
+  label,
+  value,
+  handleOnClick,
+}) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.progressBar} onClick={handleOnClick}>
+      <h4>{label}</h4>
+      <h4>{value}</h4>
+    </div>
+  );
+};
+
 const Explorer = () => {
   const classes = useStyles();
+  const handleSuggestionClick = () => {
+    //add dialog opener
+  };
   return (
     <Grid container justifyContent="space-around" className={classes.root}>
       <Grid item md={7}>
@@ -44,6 +76,21 @@ const Explorer = () => {
           <Typography variant="h5" className={classes.header}>
             Recommended job
           </Typography>
+          <div className={classes.recommendations}>
+            {recommendations.map(({ label, value }) => {
+              return (
+                <>
+                  <ProgressBar
+                    key={label}
+                    label={label}
+                    value={value}
+                    handleOnClick={handleSuggestionClick}
+                  />
+                  <br />
+                </>
+              );
+            })}
+          </div>
         </Paper>
       </Grid>
     </Grid>
