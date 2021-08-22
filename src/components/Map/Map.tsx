@@ -1,7 +1,7 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
-import MarkerPopup from './MarkerPopup';
+import { MapContainer, Popup, TileLayer, GeoJSON } from "react-leaflet";
+import Marker from './Marker';
 import L, { PathOptions } from "leaflet";
 import { e4, getColor } from "./utils";
 
@@ -9,14 +9,6 @@ type MapProps = {
   selectedSuburb: string;
 };
 const geoJson = window.location.origin + "/output.json";
-
-const markerIcon = L.icon({
-  iconUrl: window.location.origin + "/img/marker.png",
-  iconRetinaUrl: window.location.origin + "/img/marker.png",
-  iconAnchor: [5, 55],
-  popupAnchor: [10, -44],
-  iconSize: [40, 40]
-});
 
 export const Map: React.FC<MapProps> = ({ selectedSuburb }) => {
   const [map, setMap] = React.useState<any>();
@@ -48,7 +40,7 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb }) => {
 
   React.useEffect(() => {
     if (map && e4[selectedSuburb] && e4[selectedSuburb].markerPosition) {
-      map.flyTo([e4[selectedSuburb].markerPosition?.lat, e4[selectedSuburb].markerPosition?.long])
+      map.flyTo([e4[selectedSuburb].markerPosition?.lat, e4[selectedSuburb].markerPosition?.long], 13)
     }
   }, [selectedSuburb])
 
@@ -72,15 +64,7 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb }) => {
         />
         {
           Object.entries(e4).filter(e => e[1].markerPosition).map((se4Location) => (
-            <Marker
-              icon={markerIcon}
-              position={[se4Location[1].markerPosition!.lat, se4Location[1].markerPosition!.long]}
-              key={`${se4Location[1].markerPosition!.lat}-${se4Location[1].markerPosition!.long}`}
-            >
-              <Popup>
-                <MarkerPopup location={se4Location[0]}/>
-              </Popup>
-            </Marker>
+            <Marker se4Location={se4Location} selectedSuburb={selectedSuburb} />
           ))
         }
       </MapContainer>
