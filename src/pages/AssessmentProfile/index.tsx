@@ -36,7 +36,7 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, className }) => {
     setFieldValue(value);
   };
 
-  const handleSliderValueChange = (value: number) => {
+  const handleSliderValueChange = (e: any, value: number) => {
     setSliderValue(value);
   };
 
@@ -50,9 +50,10 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, className }) => {
         </Grid>
         <Grid item md={6}>
           <SkillSlider
+            label='asd'
             defaultValue={0}
-            sliderValue={sliderValue}
-            onSliderValueChange={handleSliderValueChange}
+            value={sliderValue as any}
+            onChange={handleSliderValueChange as any}
           />
           {!!sliderValue ? (
             <DropDown handleChange={handleSelectionChange} value={fieldValue} />
