@@ -1,7 +1,7 @@
 import { makeStyles, Paper, Tabs } from "@material-ui/core"
 import { useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
-import LocationFilter from "./LocationFilter"
+import LocationFilter, { locations } from "./LocationFilter"
 import SkillFilter from "./SkillFilter"
 import StyledTab from "./StyledTab"
 
@@ -10,10 +10,12 @@ const Filters = ({ onChange }: any) => {
   const [tab, setTab] = useState('location')
   const handleChangeTab = (event: React.ChangeEvent<{}>, newValue: string) => setTab(newValue)
 
-  const methods = useForm()
-  const onSubmit = (data: any) => {
-    onChange?.(data)
-  }
+  const methods = useForm({
+    defaultValues: {
+      location: locations[0].value
+    }
+  })
+  const onSubmit = (data: any) => onChange?.(data)
 
   return (
     <Paper className={classes.root}>
