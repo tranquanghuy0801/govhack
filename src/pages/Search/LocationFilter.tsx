@@ -2,6 +2,7 @@ import { Button, MenuItem, TextField, withStyles } from "@material-ui/core"
 import { useFormContext } from "react-hook-form"
 import { e4 } from 'components/Map/utils'
 import { options as industries } from 'assets/industry'
+import { useEffect } from "react"
 
 const locations = Object.keys(e4).map(key => ({
   label: key,
@@ -9,7 +10,12 @@ const locations = Object.keys(e4).map(key => ({
 }))
 
 const LocationFilter = () => {
-  const { register } = useFormContext()
+  const { register, setValue } = useFormContext()
+
+  useEffect(() => {
+    setValue('location', locations[0].value, { shouldValidate: false })
+    console.log(locations[0].value)
+  }, [])
 
   return (
     <div style={{ padding: 32 }}>
