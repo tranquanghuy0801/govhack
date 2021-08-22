@@ -1,18 +1,12 @@
 import { Button, MenuItem, TextField, withStyles } from "@material-ui/core"
 import { useFormContext } from "react-hook-form"
 import { e4 } from 'components/Map/utils'
+import { options as industries } from 'assets/industry'
 
 const locations = Object.keys(e4).map(key => ({
   label: key,
   value: key
 }))
-
-// const locations = [
-//   { label: 'Brisbane', value: 'brisbane' },
-// ]
-const industries = [
-  { label: 'Information Technology', value: 'it' }
-]
 
 const LocationFilter = () => {
   const { register } = useFormContext()
@@ -28,13 +22,11 @@ const LocationFilter = () => {
       </StyledSelect>
 
       <StyledSelect label='Industry' {...register('industry')}>
-        <MenuItem value='it'>
-          {industries.map(industry => (
-            <MenuItem key={industry.value} value={industry.value}>
-              {industry.label}
-            </MenuItem>
-          ))}
-        </MenuItem>
+        {industries.map(industry => (
+          <MenuItem key={industry} value={industry}>
+            {industry}
+          </MenuItem>
+        ))}
       </StyledSelect>
 
       <Button variant='contained' color='primary' type='submit'>
