@@ -1,9 +1,15 @@
 import { Button, MenuItem, TextField, withStyles } from "@material-ui/core"
 import { useFormContext } from "react-hook-form"
+import { e4 } from 'components/Map/utils'
 
-const locations = [
-  { label: 'Brisbane', value: 'brisbane' },
-]
+const locations = Object.keys(e4).map(key => ({
+  label: key,
+  value: key
+}))
+
+// const locations = [
+//   { label: 'Brisbane', value: 'brisbane' },
+// ]
 const industries = [
   { label: 'Information Technology', value: 'it' }
 ]

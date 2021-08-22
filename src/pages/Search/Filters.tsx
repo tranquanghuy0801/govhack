@@ -5,14 +5,14 @@ import LocationFilter from "./LocationFilter"
 import SkillFilter from "./SkillFilter"
 import StyledTab from "./StyledTab"
 
-const Filters = () => {
+const Filters = ({ onChange }: any) => {
   const classes = useStyles()
   const [tab, setTab] = useState('location')
   const handleChangeTab = (event: React.ChangeEvent<{}>, newValue: string) => setTab(newValue)
 
   const methods = useForm()
   const onSubmit = (data: any) => {
-    console.log(data)
+    onChange?.(data)
   }
 
   return (
