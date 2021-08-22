@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, makeStyles, Paper, Button, Typography } from "@material-ui/core";
-import SkillSlider from "../Slider";
-import DropDown from "../Dropdown";
+import SkillSlider from "../../components/Slider";
+import DropDown from "../../components/Dropdown";
 
 const profileFields = [
   "Numeracy",
