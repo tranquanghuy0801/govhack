@@ -1,13 +1,12 @@
 import React from "react";
-import { Suburb } from "./Suburb";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
+import MarkerPopup from './MarkerPopup';
 import L, { PathOptions } from "leaflet";
 import { e4, getColor } from "./utils";
 
 type MapProps = {
-  selectedSuburb: Suburb;
-  onSuburbChange: () => any;
+  selectedSuburb: string;
 };
 const geoJson = window.location.origin + "/output.json";
 
@@ -19,7 +18,8 @@ const markerIcon = L.icon({
   iconSize: [40, 40]
 });
 
-export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
+export const Map: React.FC<MapProps> = ({ selectedSuburb }) => {
+  const [map, setMap] = React.useState<any>();
   const [geoJsonData, setGeoJsonData] = React.useState<
     GeoJSON.GeoJsonObject | undefined
   >();
@@ -46,6 +46,12 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
     fetchGeoData();
   }, []);
 
+  React.useEffect(() => {
+    if (map && e4[selectedSuburb] && e4[selectedSuburb].markerPosition) {
+      map.flyTo([e4[selectedSuburb].markerPosition?.lat, e4[selectedSuburb].markerPosition?.long])
+    }
+  }, [selectedSuburb])
+
   if (!geoJsonData) {
     return <div>Loading map...</div>;
   }
@@ -57,6 +63,7 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
         zoom={13}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%", zIndex: 1 }}
+        whenCreated={map => setMap(map)}
       >
         <GeoJSON data={geoJsonData} style={style} />
         <TileLayer
@@ -68,9 +75,10 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
             <Marker
               icon={markerIcon}
               position={[se4Location[1].markerPosition!.lat, se4Location[1].markerPosition!.long]}
+              key={`${se4Location[1].markerPosition!.lat}-${se4Location[1].markerPosition!.long}`}
             >
               <Popup>
-                Something nice about {se4Location[0]}
+                <MarkerPopup location={se4Location[0]}/>
               </Popup>
             </Marker>
           ))
