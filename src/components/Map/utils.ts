@@ -35,6 +35,7 @@ export const e4: Record<string, E4> = {
   },
   "Queensland - Outback": {
     color: "#de8a9e",
+    ...{ ...getMarkPosition(139.4930, -20.7264) },
   },
   Cairns: {
     color: "#65d2d7",
@@ -46,7 +47,7 @@ export const e4: Record<string, E4> = {
   },
   "Central Queensland": {
     color: "#affd68",
-    ...{ ...getMarkPosition(152.171722, -25.19454) },
+    ...{ ...getMarkPosition(149.666270, -23.720520) },
   },
   "Logan - Beaudesert": {
     color: "#8866a7",
@@ -69,11 +70,11 @@ export const e4: Record<string, E4> = {
   },
   "Wide Bay": {
     color: "#5b657c",
-    ...{ ...getMarkPosition(153.14038389957688, -25.900014470851016) },
+    ...{ ...getMarkPosition(152.043015, -25.510059) },
   },
   "Brisbane - South": {
     color: "#00ffff",
-    ...{ ...getMarkPosition(149.186813, -21.144337) },
+    ...{ ...getMarkPosition(153.068320, -27.572730) },
   },
   "Brisbane Inner City": {
     color: "#d1a23c",
@@ -84,15 +85,15 @@ export const e4: Record<string, E4> = {
   },
   "Brisbane - West": {
     color: "#640696",
-    ...{ ...getMarkPosition(153.00402147042237, -27.483837847798483) },
+    ...{ ...getMarkPosition(152.940018, -27.507271) },
   },
   "Brisbane - North": {
     color: "#197ae1",
-    ...{ ...getMarkPosition(152.986271328848, -27.2375329851083) },
+    ...{ ...getMarkPosition(153.038571, -27.359222) },
   },
   "Brisbane - East": {
     color: "#70418e",
-    ...{ ...getMarkPosition(153.04214757439036, -27.48476039123311) },
+    ...{ ...getMarkPosition(153.266667, -27.533333) },
   },
   "Moreton Bay - North": {
     color: "#c8a20f",
@@ -108,7 +109,7 @@ export const e4: Record<string, E4> = {
   },
   "Moreton Bay - South": {
     color: "#11437f",
-    ...{ ...getMarkPosition(152.91134292885647, -27.204776989744097) },
+    ...{ ...getMarkPosition(152.8300, -27.2500) },
   },
   "Migratory - Offshore - Shipping (Qld)": {
     color: "#1b42c8",
