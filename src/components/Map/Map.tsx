@@ -51,12 +51,12 @@ export const Map: React.FC<MapProps> = ({ selectedSuburb, onSuburbChange }) => {
   }
 
   return (
-    <div>
+    <div style={{ width: '100%', height: '100%', zIndex: 1 }}>
       <MapContainer
         center={[-27.4705, 153.026]}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: "100vh", width: "100wh" }}
+        style={{ height: "100%", width: "100%", zIndex: 1 }}
       >
         <GeoJSON data={geoJsonData} style={style} />
         <TileLayer

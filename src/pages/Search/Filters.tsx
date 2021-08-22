@@ -47,6 +47,7 @@ const useStyles = makeStyles({
     top: 12,
     right: 24,
     width: 340,
+    zIndex: 2,
   },
   content: {
     height: 'calc(100vh - 64px - 51px - 12px - 40px)',
