@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 300,
-      maxWidth: 300,
+      minWidth: 200,
+      maxWidth: 200,
     },
     menuItem: {
       "& .MuiMenuItem-root	": {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     noLabel: {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(1.5),
     },
   })
 );
@@ -32,7 +32,7 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 300,
+      width: 200,
     },
   },
 };
@@ -63,6 +63,7 @@ const Dropdown: React.FC<any> = ({ handleChange, value }) => {
           input={<Input />}
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
+          variant='filled'
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>

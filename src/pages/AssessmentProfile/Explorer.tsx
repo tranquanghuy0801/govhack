@@ -33,7 +33,7 @@ const Explorer = () => {
     <Grid container justifyContent="space-around" className={classes.root}>
       <Grid item md={7}>
         <Paper elevation={12}>
-          <Typography variant="h3" className={classes.header}>
+          <Typography variant="h5" className={classes.header}>
             Explore
           </Typography>
           <img className={classes.img} src={SkillCluster} alt="skill-cluster" />
@@ -41,7 +41,7 @@ const Explorer = () => {
       </Grid>
       <Grid item md={4}>
         <Paper elevation={12}>
-          <Typography variant="h3" className={classes.header}>
+          <Typography variant="h5" className={classes.header}>
             Recommended job
           </Typography>
         </Paper>
