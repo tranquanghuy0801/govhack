@@ -4,12 +4,11 @@ import { Map } from 'components/Map/Map'
 import { useState } from "react"
 
 const Search = () => {
-  const [filters, setFiltes] = useState<any>()
-  console.log(filters)
+  const [filters, setFiltes] = useState<any>();
   
   return (
     <PageLayout title='Visualisation'>
-      <Map onSuburbChange={() => {}} selectedSuburb="AcaciaRidge" />
+      <Map selectedSuburb={filters?.location} />
       <Filters onChange={(values: any) => setFiltes(values)} />
     </PageLayout>
   )

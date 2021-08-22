@@ -23,12 +23,6 @@ interface E4 {
 }
 
 export const e4: Record<string, E4> = {
-  SA4_NAME_2016: {
-    color: "#32d3c2",
-  },
-  "No usual address (Qld)": {
-    color: "#e0c46a",
-  },
   Townsville: {
     color: "#388de7",
     ...{ ...getMarkPosition(146.816956, -19.258965) },
@@ -40,10 +34,6 @@ export const e4: Record<string, E4> = {
   Cairns: {
     color: "#65d2d7",
     ...{ ...getMarkPosition(145.778061, -16.91855) },
-  },
-  "Darling Downs - Maranoa": {
-    color: "#995b65",
-    ...{ ...getMarkPosition(115.982193, -32.19249) },
   },
   "Central Queensland": {
     color: "#affd68",
@@ -110,8 +100,5 @@ export const e4: Record<string, E4> = {
   "Moreton Bay - South": {
     color: "#11437f",
     ...{ ...getMarkPosition(152.8300, -27.2500) },
-  },
-  "Migratory - Offshore - Shipping (Qld)": {
-    color: "#1b42c8",
   },
 };
