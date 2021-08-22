@@ -1,0 +1,57 @@
+import { makeStyles, Paper, Tabs } from "@material-ui/core"
+import { useState } from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import LocationFilter from "./LocationFilter"
+import SkillFilter from "./SkillFilter"
+import StyledTab from "./StyledTab"
+
+const Filters = () => {
+  const classes = useStyles()
+  const [tab, setTab] = useState('location')
+  const handleChangeTab = (event: React.ChangeEvent<{}>, newValue: string) => setTab(newValue)
+
+  const methods = useForm()
+  const onSubmit = (data: any) => {
+    console.log(data)
+  }
+
+  return (
+    <Paper className={classes.root}>
+      <Tabs
+        variant='fullWidth'
+        value={tab}
+        onChange={handleChangeTab}
+        TabIndicatorProps={{
+          style: { display: 'none' }
+        }}
+      >
+        <StyledTab label='Location' value='location' />
+        <StyledTab label='Skills' value='skills' />
+      </Tabs>
+
+      <div className={classes.content}>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            {tab === 'location' ? <LocationFilter /> : <SkillFilter />}
+          </form>
+        </FormProvider>
+      </div>
+    </Paper>
+  )
+}
+export default Filters
+
+const useStyles = makeStyles({
+  root: {
+    position: 'absolute',
+    top: 12,
+    right: 24,
+    width: 340,
+  },
+  content: {
+    height: 'calc(100vh - 64px - 51px - 12px - 40px)',
+    overflow: 'auto',
+  }
+})
+
+
